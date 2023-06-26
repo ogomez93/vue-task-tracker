@@ -1,12 +1,14 @@
 <template>
   <div class="container">
     <Header title="Task Tracker" />
+    <AddTask @add-task="addTask" />
     <Tasks @delete-task="deleteTask" @toggle-reminder="toggleReminder" :tasks="tasks" />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import AddTask from './components/AddTask.vue';
 import Header from './components/Header.vue';
 import Tasks from './components/Tasks.vue';
 import { ITask } from '@/interfaces';
@@ -14,6 +16,7 @@ import { ITask } from '@/interfaces';
 export default defineComponent({
   name: 'App',
   components: {
+    AddTask,
     Header,
     Tasks
   },
@@ -23,6 +26,9 @@ export default defineComponent({
     }
   },
   methods: {
+    addTask(newTask: ITask) {
+      this.tasks = [...this.tasks, newTask]
+    },
     deleteTask(id: number) {
       if (confirm('Are you sure?')) {
         this.tasks = this.tasks.filter((task: ITask) => task.id !== id)
