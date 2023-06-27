@@ -17,7 +17,7 @@ export default defineComponent({
   },
   methods: {
     onClick() {
-      console.log('click')
+      this.$emit('btn-click')
     }
   }
 })

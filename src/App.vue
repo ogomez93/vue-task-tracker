@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <Header title="Task Tracker" />
-    <AddTask @add-task="addTask" />
+    <Header title="Task Tracker" @toggle-add-task="toggleAddTask" :showAddTask="showAddTask" />
+    <AddTask @add-task="addTask" v-if="showAddTask" />
     <Tasks @delete-task="deleteTask" @toggle-reminder="toggleReminder" :tasks="tasks" />
   </div>
 </template>
@@ -22,6 +22,7 @@ export default defineComponent({
   },
   data() {
     return {
+      showAddTask: false,
       tasks: [] as ITask[]
     }
   },
@@ -38,6 +39,9 @@ export default defineComponent({
       this.tasks = this.tasks.map((task: ITask) =>
         task.id === id ? { ...task, reminder: !task.reminder } : task
       )
+    },
+    toggleAddTask() {
+      this.showAddTask = !this.showAddTask
     }
   },
   created() {
