@@ -10,6 +10,16 @@ yarn install
 yarn serve
 ```
 
+### Create the DB and seed the json-server
+```
+yarn seed
+```
+
+### Runs the json-server
+```
+yarn backend
+```
+
 ### Compiles and minifies for production
 ```
 yarn build
